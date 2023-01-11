@@ -1,7 +1,7 @@
 from drf_spectacular.utils import extend_schema, extend_schema_view
-from rest_framework import viewsets, permissions
+from rest_framework import viewsets
 
-from ticketsApp.models import Role
+from ticketsApp.models.role import Role
 from ticketsApp.serializers.roleSerializer import RoleSerializer
 
 

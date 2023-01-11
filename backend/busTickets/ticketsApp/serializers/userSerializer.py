@@ -1,12 +1,15 @@
 from rest_framework import serializers
 
+from ticketsApp.models.user import User
 from ticketsApp.models.role import Role
 
 
-class RoleSerializer(serializers.ModelSerializer):
+class UserSerializer(serializers.ModelSerializer):
     """
 
     """
     class Meta:
-        model = Role
+        model = User
         fields = '__all__'
+
+

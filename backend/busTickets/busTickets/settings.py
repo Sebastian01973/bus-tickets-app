@@ -75,6 +75,8 @@ REST_FRAMEWORK = {
     'DEFAULT_SCHEMA_CLASS': 'drf_spectacular.openapi.AutoSchema',
 }
 
+AUTH_USER_MODEL = 'ticketsApp.BoxOffice'
+
 SPECTACULAR_SETTINGS = {
     'TITLE': 'API ',
     'DESCRIPTION': 'API',
