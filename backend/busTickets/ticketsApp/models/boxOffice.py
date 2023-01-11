@@ -17,7 +17,7 @@ class BoxOfficeManager(BaseUserManager):
         box_office.save(using=self._db)
         return box_office
 
-    def create_superbox_office(self, username, password):
+    def create_superuser(self, username, password):
         """
         Creates and saves a superofficebox with the given username and password.
         """
@@ -37,7 +37,7 @@ class BoxOffice(AbstractBaseUser, PermissionsMixin):
     password = models.CharField(max_length=256)
     address = models.CharField(max_length=50)
     email = models.EmailField(max_length=50)
-    user = models.ForeignKey(User, on_delete=models.CASCADE)
+    fk_user = models.ForeignKey(User, on_delete=models.CASCADE, null=True)
 
     def save(self, **kwargs):
         some_salt = 'mMUj0DrIK6vgtdIYepkIxN'
