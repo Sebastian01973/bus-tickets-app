@@ -3,9 +3,11 @@ from drf_spectacular.views import SpectacularAPIView, SpectacularSwaggerView, Sp
 from rest_framework_extensions import routers
 
 from ticketsApp.views.roleViewSet import RoleViewSet
+from ticketsApp.views.userViewSet import UserViewSet
 
 router = routers.SimpleRouter()
 router.register(r'role', RoleViewSet)
+router.register(r'user', UserViewSet)
 
 urlpatterns = [
     path('schema/', SpectacularAPIView.as_view(), name='schema'),
