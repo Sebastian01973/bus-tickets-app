@@ -23,6 +23,8 @@ class BoxOfficeManager(BaseUserManager):
         """
         box_office = self.create_box_office(username=username, password=password)
         box_office.is_admin = True
+        box_office.is_staff = True
+        box_office.is_superuser = True
         box_office.save(using=self._db)
         return box_office
 
@@ -37,7 +39,7 @@ class BoxOffice(AbstractBaseUser, PermissionsMixin):
     password = models.CharField(max_length=256)
     address = models.CharField(max_length=50)
     email = models.EmailField(max_length=50)
-    fk_user = models.ForeignKey(User, on_delete=models.CASCADE, null=True)
+    user = models.ForeignKey(User, on_delete=models.CASCADE, null=True)
 
     def save(self, **kwargs):
         some_salt = 'mMUj0DrIK6vgtdIYepkIxN'
