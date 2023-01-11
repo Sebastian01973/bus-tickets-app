@@ -4,6 +4,19 @@
 <br>
 </h1>
 
+<!-- TOC -->
+  * [💻 Sobre este Proyecto](#-sobre-este-proyecto)
+  * [📃 Documentacion Swagger](#-documentacion-swagger)
+  * [🧑🏽‍💻 ¿Tecnologias?](#-tecnologias)
+  * [Como instalar el proyecto. ( 🔧Set up )](#como-instalar-el-proyecto--set-up-)
+    * [1. Clonar el repositorio](#1-clonar-el-repositorio)
+    * [2. Creacion Entorno Virtual y Archivo .env](#2-creacion-entorno-virtual-y-archivo-env)
+    * [3. Activacion del Entorno Virtual](#3-activacion-del-entorno-virtual)
+    * [4. Instalacion de Librerias (Archivo requirements)](#4-instalacion-de-librerias--archivo-requirements-)
+    * [5. Ejecutar el Proyecto](#5-ejecutar-el-proyecto)
+  * [🪪 Licencia](#-licencia)
+<!-- TOC -->
+
 ## 💻 Sobre este Proyecto
 
 Hablar mierda don edwin
@@ -48,10 +61,9 @@ y CSS haciendo uso del framework React.js, además se utilizó el IDE de Intelli
 
 </div>
 
-
 ---
 
-## Como instalar el proyecto. (Set UP )
+## Como instalar el proyecto. ( 🔧Set up )
 
 ### 1. Clonar el repositorio
 
