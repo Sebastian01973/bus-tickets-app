@@ -5,6 +5,10 @@ from ticketsApp.models.vehicle import Vehicle
 
 
 class Payroll(models.Model):
+    """
+    This model represents a Payroll in the company.
+    with and id that automatically increments and foreingkey of boxOffice and vehicle
+    """
     id = models.AutoField(primary_key=True, unique=True, null=False)
     date = models.DateField(null=False)
     discount = models.CharField(max_length=20, null=False)
@@ -15,4 +19,4 @@ class Payroll(models.Model):
     # boxOffice = models.ForeignKey(BoxOffice, on_delete=models.CASCADE, null=False)
 
     def __str__(self):
-        return self.id
+        return self.id, ' ', self.date, ' ', self.discount, ' ', self.retention, ' ', self.date_start, ' ', self.date_end, ' ', self.vehicle

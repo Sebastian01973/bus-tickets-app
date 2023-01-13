@@ -5,3 +5,5 @@ from .business import Business
 from .road import Road
 from .vehicle import Vehicle
 from .payroll import Payroll
+from .client import Client
+from .ticket import Ticket
