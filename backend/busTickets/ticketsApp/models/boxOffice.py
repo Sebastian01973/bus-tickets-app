@@ -12,6 +12,7 @@ class BoxOfficeManager(BaseUserManager):
             raise ValueError('Users must have an username')
         if not email:
             raise ValueError('Users must have an email address')
+
         user = self.model(username=username, email=self.normalize_email(email))
         user.set_password(password)
         user.save(using=self._db)
@@ -19,7 +20,6 @@ class BoxOfficeManager(BaseUserManager):
 
     def create_superuser(self, email, username, password):
         sudo = self.create_user(username, email, password=password)
-        sudo.is_admin = True
         sudo.is_admin = True
         sudo.is_staff = True
         sudo.is_superuser = True
