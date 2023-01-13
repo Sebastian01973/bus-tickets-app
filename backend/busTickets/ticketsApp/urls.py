@@ -3,6 +3,7 @@ from drf_spectacular.views import SpectacularAPIView, SpectacularSwaggerView, Sp
 from rest_framework_extensions import routers
 
 from ticketsApp.views.businessViewSet import BusinessViewSet
+from ticketsApp.views.changePasswordViewSet import ChangePasswordViewSet
 from ticketsApp.views.payrollViewSet import PayrollViewSet
 from ticketsApp.views.roadViewSet import RoadViewSet
 from ticketsApp.views.roleViewSet import RoleViewSet
@@ -27,6 +28,7 @@ router.register(r'payroll', PayrollViewSet)
 router.register(r'boxOffice', BoxOfficeCreateView)
 router.register(r'client', ClientViewSet)
 router.register(r'ticket', TicketViewSet)
+# router.register(r'changePassword', ChangePasswordViewSet)
 
 urlpatterns = [
     path('login/', TokenObtainPairView.as_view()),
