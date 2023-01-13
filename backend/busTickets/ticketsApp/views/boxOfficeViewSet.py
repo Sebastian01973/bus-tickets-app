@@ -1,5 +1,6 @@
 from drf_spectacular.utils import extend_schema_view, extend_schema
 from rest_framework import permissions, viewsets
+from rest_framework.decorators import action
 
 from ticketsApp.models import BoxOffice
 from ticketsApp.serializers.boxOfficeSerializer import BoxOfficeSerializer
@@ -25,6 +26,10 @@ class BoxOfficeCreateView(viewsets.ModelViewSet):
             'auth': str(request.auth),  # None
         }
         return Response(content)
+
+    @action(detail=True, methods=['get'])
+    def set_password(self, request, pk=None):
+        pass
 
     serializer_class = BoxOfficeSerializer
     queryset = BoxOffice.objects.all()
