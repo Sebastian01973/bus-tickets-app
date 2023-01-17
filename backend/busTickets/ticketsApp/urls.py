@@ -2,6 +2,8 @@ from django.urls import path, include
 from drf_spectacular.views import SpectacularAPIView, SpectacularSwaggerView, SpectacularRedocView
 from rest_framework_extensions import routers
 
+from ticketsApp.models.annulation import Annulation
+from ticketsApp.views.annulationViewSet import AnnulationViewSet
 from ticketsApp.views.businessViewSet import BusinessViewSet
 from ticketsApp.views.changePasswordViewSet import ChangePasswordViewSet
 from ticketsApp.views.payrollViewSet import PayrollViewSet
@@ -28,6 +30,7 @@ router.register(r'payroll', PayrollViewSet)
 router.register(r'boxOffice', BoxOfficeCreateView)
 router.register(r'client', ClientViewSet)
 router.register(r'ticket', TicketViewSet)
+router.register(r'anulation', AnnulationViewSet)
 # router.register(r'changePassword', ChangePasswordViewSet)
 
 urlpatterns = [
