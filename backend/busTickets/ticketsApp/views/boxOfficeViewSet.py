@@ -15,21 +15,16 @@ from rest_framework.response import Response
     destroy=extend_schema(description="Delete a user"),
 )
 class BoxOfficeCreateView(viewsets.ModelViewSet):
+    serializer_class = BoxOfficeSerializer
+    queryset = BoxOffice.objects.all()
+
     def get_permissions(self):
         if self.action == 'create':
             return [permissions.AllowAny()]
         return [permissions.IsAuthenticated()]
 
-    def post(self, request, format=None):
-        content = {
-            'user': str(request.user),  # `django.contrib.auth.User` instance.
-            'auth': str(request.auth),  # None
-        }
-        return Response(content)
-
     @action(detail=True, methods=['get'])
     def set_password(self, request, pk=None):
         pass
 
-    serializer_class = BoxOfficeSerializer
-    queryset = BoxOffice.objects.all()
+

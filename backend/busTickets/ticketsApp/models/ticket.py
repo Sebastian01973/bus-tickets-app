@@ -22,3 +22,6 @@ class Ticket(models.Model):
     vehicle = models.ForeignKey(Vehicle, on_delete=models.CASCADE, null=False)
     road = models.ForeignKey(Road, on_delete=models.CASCADE, null=False)
 
+    def __str__(self):
+        return self.id
+
