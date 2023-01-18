@@ -13,10 +13,11 @@ from ticketsApp.views.vehicleViewSet import VehicleViewSet
 from ticketsApp.views.clientViewSet import ClientViewSet
 from ticketsApp.views.boxOfficeViewSet import BoxOfficeCreateView
 from ticketsApp.views.ticketViewSet import TicketViewSet
+from ticketsApp.views.ReportGeneral import ReportGeneral
 
 from rest_framework_simplejwt.views import (TokenObtainPairView, TokenRefreshView)
 
-from ticketsApp.views.ReportGeneral import ReportGeneral
+
 
 router = routers.SimpleRouter()
 router.register(r'role', RoleViewSet)
