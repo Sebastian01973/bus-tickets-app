@@ -23,12 +23,12 @@ class ChangePasswordSerializer(serializers.Serializer):
     # def validate(self, data):
     #     if data['new_password'] != data['confirm_new_password']:
     #         raise serializers.ValidationError("New password and confirm new password do not match")
-    #     password_validation.validate_password(data['new_password'], self.context['request'].user)
+    #     password_validation.validate_password(data['new_password'], self.context['request'].BoxOffice)
     #     return data
     #
     # def save(self, **kwargs):
     #     password = self.validated_data['new_password']
-    #     user = self.context['request'].user
-    #     user.set_password(password)
-    #     user.save()
-    #     return user
+    #     BoxOffice = self.context['request'].BoxOffice
+    #     BoxOffice.set_password(password)
+    #     BoxOffice.save()
+    #     return BoxOffice

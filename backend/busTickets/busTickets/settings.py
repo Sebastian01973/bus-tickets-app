@@ -41,7 +41,7 @@ INSTALLED_APPS = [
     'rest_framework',
     'ticketsApp',
     'drf_spectacular',
-    'axes',
+    # 'axes',
     'corsheaders',
 ]
 
@@ -65,20 +65,20 @@ MIDDLEWARE = [
     'django.contrib.auth.middleware.AuthenticationMiddleware',
     'django.contrib.messages.middleware.MessageMiddleware',
     'django.middleware.clickjacking.XFrameOptionsMiddleware',
-    'axes.middleware.AxesMiddleware',
+    # 'axes.middleware.AxesMiddleware',
 ]
 
 AUTHENTICATION_BACKENDS = [
     # AxesStandaloneBackend should be the first backend in the AUTHENTICATION_BACKENDS list.
-    'axes.backends.AxesStandaloneBackend',
+    # 'axes.backends.AxesStandaloneBackend',
 
     # Django ModelBackend is the default authentication backend.
     'django.contrib.auth.backends.ModelBackend',
 ]
 
-AXES_ONLY_USER_FAILURES = True
-AXES_FAILURE_LIMIT = 5
-SESSION_EXPIRE_SECONDS = 300  #seconds..(5 minutes.)
+# AXES_ONLY_USER_FAILURES = True
+# AXES_FAILURE_LIMIT = 5
+# SESSION_EXPIRE_SECONDS = 300  #seconds..(5 minutes.)
 
 REST_FRAMEWORK = {
     'DEFAULT_AUTHENTICATION_CLASSES': [
@@ -126,13 +126,21 @@ WSGI_APPLICATION = 'busTickets.wsgi.application'
 # https://docs.djangoproject.com/en/4.1/ref/settings/#databases
 
 DATABASES = {
+    # 'default': {
+    #     'ENGINE': 'django.db.backends.postgresql',
+    #     'NAME': 'railway',
+    #     'USER': 'postgres',
+    #     'PASSWORD': 'WU8yGVBl6GORaR2PhYSV',
+    #     'HOST': 'containers-us-west-166.railway.app',
+    #     'PORT': '6347',
+    # }
     'default': {
         'ENGINE': 'django.db.backends.postgresql',
-        'NAME': 'railway',
+        'NAME': 'custom',
         'USER': 'postgres',
-        'PASSWORD': 'WU8yGVBl6GORaR2PhYSV',
-        'HOST': 'containers-us-west-166.railway.app',
-        'PORT': '6347',
+        'PASSWORD': 'Orion1',
+        'HOST': 'localhost',
+        'PORT': '5432',
     }
 }
 
