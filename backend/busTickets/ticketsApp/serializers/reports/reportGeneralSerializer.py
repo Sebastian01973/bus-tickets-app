@@ -18,15 +18,19 @@ from ticketsApp.serializers.businessSerializer import BusinessSerializer
 
 
 class ReportGeneralSerializer(serializers.ModelSerializer):
-    plate = VehicleSerializer()
-    name = BusinessSerializer()
-    user = UserSerializer()
-    road = RoadSerializer()
-    box_office = BoxOfficeSerializer()
-    client = ClientSerializer()
-    ticket = TicketSerializer()
+    vehicle = VehicleSerializer()
+    # client_id = serializers.CharField(source='client.id')
 
     class Meta:
-        model = Ticket, Vehicle, Business, Road, Client, User, BoxOffice
-        fields = Vehicle.plate, Business.name, User.name, User.last_name, Road.destiny, Ticket.total_value,\
-            Ticket.departure_time, Ticket.generate_date, Ticket.quantity
+        model = Ticket
+        fields = ['departure_time', 'generate_date', 'quantity', 'total_value', 'vehicle']
+
+    def create(self, validated_data):
+        vehicleData = validated_data.pop('vehicle')
+        try:
+            vehicle_instance = Vehicle.objects.get(plate=vehicleData.get('plate'))
+            print('vehicle_instance ', vehicle_instance)
+            reportGeneral_instance = Ticket.objects.create(vehicle=vehicle_instance, **validated_data)
+            return reportGeneral_instance
+        except Vehicle.DoesNotExist:
+            raise serializers.ValidationError("Vehicle does not exist")

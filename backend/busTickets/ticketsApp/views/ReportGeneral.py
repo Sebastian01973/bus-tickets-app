@@ -21,7 +21,8 @@ class ReportGeneral(viewsets.ModelViewSet):
         if params['name'] is None or params['initial_date'] is None or params['final_date'] is None:
             return Response({'error': 'name and initial_date and final_date required'}, status=400)
 
+
         queryset = Ticket.objects.raw(SQL_QUERY_REPORT_GENERAL, params.values())
-        print('Paso a serializer', 'Error Aca')
         serializer = ReportGeneralSerializer(queryset, many=True)
-        return Response({serializer.data}, status=200)
+        # print('El serializador',serializer.data)
+        return Response(serializer.data, status=200)
