@@ -1,3 +1,4 @@
+from django.db import connection
 from rest_framework import viewsets
 from rest_framework.decorators import action
 from rest_framework.response import Response
@@ -21,8 +22,8 @@ class ReportGeneral(viewsets.ModelViewSet):
         if params['name'] is None or params['initial_date'] is None or params['final_date'] is None:
             return Response({'error': 'name and initial_date and final_date required'}, status=400)
 
-
-        queryset = Ticket.objects.raw(SQL_QUERY_REPORT_GENERAL, params.values())
-        serializer = ReportGeneralSerializer(queryset, many=True)
-        # print('El serializador',serializer.data)
-        return Response(serializer.data, status=200)
+        with connection.cursor() as cursor:
+            cursor.execute(SQL_QUERY_REPORT_GENERAL, (params['name'], params['initial_date'], params['final_date']))
+            columns = [col[0] for col in cursor.description]
+            values = [dict(zip(columns, row)) for row in cursor.fetchall()]
+        return Response(values, status=200)
