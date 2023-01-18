@@ -13,7 +13,10 @@ from ticketsApp.views.vehicleViewSet import VehicleViewSet
 from ticketsApp.views.clientViewSet import ClientViewSet
 from ticketsApp.views.boxOfficeViewSet import BoxOfficeCreateView
 from ticketsApp.views.ticketViewSet import TicketViewSet
-from ticketsApp.views.report.ReportGeneral import ReportGeneral
+
+
+from ticketsApp.views.report.GeneralReport import ReportGeneral
+from ticketsApp.views.report.SalesReport import SalesReport
 
 from rest_framework_simplejwt.views import (TokenObtainPairView, TokenRefreshView)
 
@@ -29,11 +32,11 @@ router.register(r'boxOffice', BoxOfficeCreateView)
 router.register(r'client', ClientViewSet)
 router.register(r'ticket', TicketViewSet)
 router.register(r'anulation', AnnulationViewSet)
-router.register(r'report', ReportGeneral)
 # router.register(r'obtainToken', ObtainTokenView)
+router.register(r'report', ReportGeneral, SalesReport)
 
 urlpatterns = [
-    # path('login/', TokenObtainPairView.as_view()),
+    path('login/', TokenObtainPairView.as_view()),
     path('refresh/', TokenRefreshView.as_view()),
     path('mylogin/', view=ObtainTokenView.as_view(), name='login'),
 
