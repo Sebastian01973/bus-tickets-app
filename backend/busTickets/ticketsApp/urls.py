@@ -2,7 +2,6 @@ from django.urls import path, include
 from drf_spectacular.views import SpectacularAPIView, SpectacularSwaggerView, SpectacularRedocView
 from rest_framework_extensions import routers
 
-from ticketsApp.models.annulation import Annulation
 from ticketsApp.views.annulationViewSet import AnnulationViewSet
 from ticketsApp.views.businessViewSet import BusinessViewSet
 from ticketsApp.views.payrollViewSet import PayrollViewSet
@@ -13,13 +12,11 @@ from ticketsApp.views.vehicleViewSet import VehicleViewSet
 from ticketsApp.views.clientViewSet import ClientViewSet
 from ticketsApp.views.boxOfficeViewSet import BoxOfficeCreateView
 from ticketsApp.views.ticketViewSet import TicketViewSet
-from ticketsApp.views.ReportGeneral import ReportGeneral
+from ticketsApp.views.report.ReportGeneral import ReportGeneral
 
 from rest_framework_simplejwt.views import (TokenObtainPairView, TokenRefreshView)
 
-
-
-router = routers.SimpleRouter()
+router: routers.ExtendedDefaultRouter = routers.ExtendedDefaultRouter()
 router.register(r'role', RoleViewSet)
 router.register(r'user', UserViewSet)
 

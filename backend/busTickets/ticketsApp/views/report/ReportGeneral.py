@@ -12,7 +12,7 @@ class ReportGeneral(viewsets.ModelViewSet):
     queryset = Ticket.objects.all()
 
     @action(detail=False, methods=['get'], url_path='report-general')
-    def report_general(self, request, pk=None):
+    def report_general(self, request):
         params = {
             'name': request.data.get('name', None),
             'initial_date': request.data.get('initial_date', None),
@@ -22,5 +22,5 @@ class ReportGeneral(viewsets.ModelViewSet):
         if params['name'] is None or params['initial_date'] is None or params['final_date'] is None:
             return Response({'error': 'name and initial_date and final_date required'}, status=400)
 
-        values = execute_query(SQL_QUERY_REPORT_GENERAL, tuple(params.values()))
-        return Response(values, status=200)
+        response = execute_query(SQL_QUERY_REPORT_GENERAL, tuple(params.values()))
+        return Response(response, status=200)
