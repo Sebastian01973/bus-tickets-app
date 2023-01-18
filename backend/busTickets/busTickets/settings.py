@@ -126,22 +126,22 @@ WSGI_APPLICATION = 'busTickets.wsgi.application'
 # https://docs.djangoproject.com/en/4.1/ref/settings/#databases
 
 DATABASES = {
-    # 'default': {
-    #     'ENGINE': 'django.db.backends.postgresql',
-    #     'NAME': 'railway',
-    #     'USER': 'postgres',
-    #     'PASSWORD': 'WU8yGVBl6GORaR2PhYSV',
-    #     'HOST': 'containers-us-west-166.railway.app',
-    #     'PORT': '6347',
-    # }
     'default': {
         'ENGINE': 'django.db.backends.postgresql',
-        'NAME': 'custom',
+        'NAME': 'railway',
         'USER': 'postgres',
-        'PASSWORD': 'Orion1',
-        'HOST': 'localhost',
-        'PORT': '5432',
+        'PASSWORD': 'IQpAdlk2BlytzW92OR6i',
+        'HOST': 'containers-us-west-56.railway.app',
+        'PORT': '5501',
     }
+    # 'default': {
+    #     'ENGINE': 'django.db.backends.postgresql',
+    #     'NAME': 'custom',
+    #     'USER': 'postgres',
+    #     'PASSWORD': 'Orion1',
+    #     'HOST': 'localhost',
+    #     'PORT': '5432',
+    # }
 }
 
 
