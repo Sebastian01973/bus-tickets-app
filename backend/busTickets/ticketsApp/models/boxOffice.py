@@ -50,7 +50,7 @@ class BoxOffice(AbstractBaseUser, PermissionsMixin):
 
     def save(self, **kwargs):
         """
-        Hash the password before saving the user model
+        Hash the password before saving the BoxOffice model
         """
         some_salt = 'mMUj0DrIK6vgtdIYepkIxN'
         self.password = make_password(self.password, some_salt)
