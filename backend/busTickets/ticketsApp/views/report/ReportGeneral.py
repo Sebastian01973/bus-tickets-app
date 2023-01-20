@@ -1,4 +1,4 @@
-from django.db import connection
+from drf_spectacular.utils import extend_schema_view, extend_schema
 from rest_framework import viewsets
 from rest_framework.decorators import action
 from rest_framework.response import Response
@@ -8,6 +8,9 @@ from ticketsApp.views.querys.QueryReportsGeneral import SQL_QUERY_REPORT_GENERAL
 from ticketsApp.utils.QueryCursor import execute_query
 
 
+@extend_schema_view(
+    list=extend_schema(description="List all reports General"),
+)
 class ReportGeneral(viewsets.ModelViewSet):
     queryset = Ticket.objects.all()
 

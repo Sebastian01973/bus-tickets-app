@@ -93,9 +93,15 @@ REST_FRAMEWORK = {
 AUTH_USER_MODEL = 'ticketsApp.BoxOffice'
 
 SPECTACULAR_SETTINGS = {
-    'TITLE': 'API ',
-    'DESCRIPTION': 'API',
+    'TITLE': 'APIRest for a public transport company',
+    'DESCRIPTION': 'In this URL are all the API endpoints, where GET,POST,UPDATE,DELETE,PATCH requests can be madeIn this URL are all the API endpoints, '
+                   'where GET,POST,UPDATE,DELETE,PATCH requests can be made',
     'VERSION': '1.0.0',
+    'CONTACT': {
+        'name': 'Sebastian Martinez y Jhon Acevedo',
+        'url': 'https://github.com/Sebastian01973/bus-tickets-app',
+    },
+    'LICENSE': {'name': 'Apache License 2.0', 'url': 'https://www.apache.org/licenses/LICENSE-2.0.html'},
     'SWAGGER_UI_SETTINGS': {
         'persistAuthorization': True,
     },
@@ -130,9 +136,9 @@ DATABASES = {
         'ENGINE': 'django.db.backends.postgresql',
         'NAME': 'railway',
         'USER': 'postgres',
-        'PASSWORD': 'IQpAdlk2BlytzW92OR6i',
-        'HOST': 'containers-us-west-56.railway.app',
-        'PORT': '5501',
+        'PASSWORD': 'WU8yGVBl6GORaR2PhYSV',
+        'HOST': 'containers-us-west-166.railway.app',
+        'PORT': '6347',
     }
     # 'default': {
     #     'ENGINE': 'django.db.backends.postgresql',
