@@ -105,6 +105,7 @@ SPECTACULAR_SETTINGS = {
     'SWAGGER_UI_SETTINGS': {
         'persistAuthorization': True,
     },
+    'COMPONENT_SPLIT_REQUEST': True,
 }
 
 ROOT_URLCONF = 'busTickets.urls'

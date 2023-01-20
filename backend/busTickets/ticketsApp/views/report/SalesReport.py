@@ -1,4 +1,7 @@
+from drf_spectacular.types import OpenApiTypes
+from drf_spectacular.utils import extend_schema, inline_serializer
 from rest_framework import viewsets
+from rest_framework import serializers
 from rest_framework.decorators import action
 from rest_framework.response import Response
 
@@ -11,7 +14,20 @@ from ticketsApp.views.querys.QuerySalesGeneral import SQL_TOTAL_COMPANY_SALES, S
 class SalesReport(viewsets.ModelViewSet):
     queryset = Ticket.objects.all()
 
-    @action(detail=False, methods=['get'], url_path='sales-company-total')
+    @extend_schema(
+        summary="Ventas totales por empresa",
+        description="Reporte general de ventas totales por empresa",
+        request=inline_serializer(
+            name="InlineFormSerializer",
+            fields={
+                "id_box": serializers.IntegerField(),
+                "initial_date": serializers.DateField(),
+                "final_date": serializers.DateField(),
+            },
+        ),
+        responses={200: OpenApiTypes.OBJECT},
+    )
+    @action(detail=False, methods=['post'], url_path='sales-company-total')
     def total_company_sales(self, request, pk=None):
         params = {
             'id_box': request.data.get('id_box', None),
@@ -24,7 +40,20 @@ class SalesReport(viewsets.ModelViewSet):
 
         return Response(values, status=200)
 
-    @action(detail=False, methods=['get'], url_path='sales-company-by-date')
+    @extend_schema(
+        summary="Ventas totales por empresa y fecha",
+        description="Reporte general de ventas totales por empresa en un rango de fechas",
+        request=inline_serializer(
+            name="InlineFormSerializer",
+            fields={
+                "nit": serializers.CharField(),
+                "initial_date": serializers.DateField(),
+                "final_date": serializers.DateField(),
+            },
+        ),
+        responses={200: OpenApiTypes.OBJECT},
+    )
+    @action(detail=False, methods=['post'], url_path='sales-company-by-date')
     def sales_by_company_date(self, request, pk=None):
         params = {
             'nit': request.data.get('nit', None),
@@ -36,7 +65,21 @@ class SalesReport(viewsets.ModelViewSet):
         values = execute_query(SQL_SALES_BY_COMPANY_DATE, tuple(params.values()))
         return Response(values, status=200)
 
-    @action(detail=False, methods=['get'], url_path='sales-by-box-office')
+    @extend_schema(
+        summary="Ventas totales por box office en una empresa",
+        description="Reporte general de ventas totales por box ofice en un rango de fechas",
+        request=inline_serializer(
+            name="InlineFormSerializer",
+            fields={
+                "id_box": serializers.IntegerField(),
+                "nit": serializers.CharField(),
+                "initial_date": serializers.DateField(),
+                "final_date": serializers.DateField(),
+            },
+        ),
+        responses={200: OpenApiTypes.OBJECT},
+    )
+    @action(detail=False, methods=['post'], url_path='sales-by-box-office')
     def sales_by_box_office(self, request, pk=None):
         params = {
             'id_box': request.data.get('id_box', None),
@@ -50,7 +93,20 @@ class SalesReport(viewsets.ModelViewSet):
         values = execute_query(SQL_SALES_BY_BOX_OFFICE, tuple(params.values()))
         return Response(values, status=200)
 
-    @action(detail=False, methods=['get'], url_path='sales-by-vehicle')
+    @extend_schema(
+        summary="Ventas totales por vehiculo",
+        description="Reporte general de ventas totales por vehiculo en un rango de fechas",
+        request=inline_serializer(
+            name="InlineFormSerializer",
+            fields={
+                "internal_number": serializers.CharField(),
+                "initial_date": serializers.DateField(),
+                "final_date": serializers.DateField(),
+            },
+        ),
+        responses={200: OpenApiTypes.OBJECT},
+    )
+    @action(detail=False, methods=['post'], url_path='sales-by-vehicle')
     def sales_by_vehicle(self, request, pk=None):
         params = {
             'internal_number': request.data.get('internal_number', None),
@@ -62,7 +118,21 @@ class SalesReport(viewsets.ModelViewSet):
         values = execute_query(SQL_SALES_BY_VEHICLE, tuple(params.values()))
         return Response(values, status=200)
 
-    @action(detail=False, methods=['get'], url_path='sales-by-destiny-and-company')
+    @extend_schema(
+        summary="Ventas totales por ruta y empresa",
+        description="Reporte general de ventas totales por ruta y empresa en un rango de fechas",
+        request=inline_serializer(
+            name="InlineFormSerializer",
+            fields={
+                "initial_date": serializers.DateField(),
+                "final_date": serializers.DateField(),
+                "id_destiny": serializers.IntegerField(),
+                "nit": serializers.CharField(),
+            },
+        ),
+        responses={200: OpenApiTypes.OBJECT},
+    )
+    @action(detail=False, methods=['post'], url_path='sales-by-destiny-and-company')
     def sales_by_destiny_and_company(self, request, pk=None):
         params = {
             'initial_date': request.data.get('initial_date', None),
