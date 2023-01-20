@@ -1,4 +1,3 @@
-from django.db import connection
 from rest_framework import viewsets
 from rest_framework.decorators import action
 from rest_framework.response import Response
@@ -13,7 +12,7 @@ from ticketsApp.utils.QueryCursor import execute_query
 class ReportGeneral(viewsets.ModelViewSet):
     queryset = Ticket.objects.all()
 
-    @action(detail=False, methods=['get'], url_path='report-general')
+    @action(detail=False, methods=['get'], url_path='general')
     def report_general(self, request, pk=None):
         params = {
             'nit': request.data.get('nit', None),
@@ -27,7 +26,7 @@ class ReportGeneral(viewsets.ModelViewSet):
         values = execute_query(SQL_QUERY_REPORT_GENERAL, tuple(params.values()))
         return Response(values, status=200)
 
-    @action(detail=False, methods=['get'], url_path='report-general-total')
+    @action(detail=False, methods=['get'], url_path='general-total')
     def report_general_total(self, request, pk=None):
         params = {
             'initial_date': request.data.get('initial_date', None),
@@ -39,7 +38,7 @@ class ReportGeneral(viewsets.ModelViewSet):
         values = execute_query(SQL_REPORT_GENERAL_TOTAL, tuple(params.values()))
         return Response(values, status=200)
 
-    @action(detail=False, methods=['get'], url_path='report-purchase-by-client')
+    @action(detail=False, methods=['get'], url_path='purchase-by-client')
     def purchases_by_client_company(self, request, pk=None):
         params = {
             'id_client': request.data.get('id_client', None),
@@ -47,7 +46,6 @@ class ReportGeneral(viewsets.ModelViewSet):
             'final_date': request.data.get('final_date', None),
             'nit': request.data.get('nit', None),
         }
-        print(tuple(params.values()))
         if params['id_client'] is None or params['initial_date'] is None or params['final_date'] is None or params[
             'nit'] is None:
             return Response({'error': 'id_client and initial_date and final_date and nit required'}, status=400)

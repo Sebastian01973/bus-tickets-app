@@ -32,7 +32,8 @@ router.register(r'boxOffice', BoxOfficeCreateView)
 router.register(r'client', ClientViewSet)
 router.register(r'ticket', TicketViewSet)
 router.register(r'anulation', AnnulationViewSet)
-router.register(r'report', ReportGeneral, SalesReport)
+router.register(r'report', ReportGeneral)
+router.register(r'sales', SalesReport)
 
 urlpatterns = [
     path('login/', TokenObtainPairView.as_view()),
