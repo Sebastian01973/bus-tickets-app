@@ -11,10 +11,8 @@ class Payroll(models.Model):
     """
     id = models.AutoField(primary_key=True, unique=True, null=False)
     date = models.DateField(null=False)
-    discount = models.CharField(max_length=20, null=False)
     retention = models.FloatField(null=False)
-    date_start = models.DateField(auto_now=True, null=False)
-
+    date_start = models.DateField(null=False)
     date_end = models.DateField()
     vehicle = models.ForeignKey(Vehicle, on_delete=models.CASCADE)
     boxOffice = models.ForeignKey(BoxOffice, on_delete=models.CASCADE)
