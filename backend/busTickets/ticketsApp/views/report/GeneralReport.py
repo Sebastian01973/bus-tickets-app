@@ -8,7 +8,7 @@ from rest_framework import serializers
 from ticketsApp.models import Ticket
 from ticketsApp.views.querys.QueryReportsGeneral \
     import SQL_QUERY_REPORT_GENERAL, SQL_PURCHASE_BY_CLIENT, SQL_USER_REPORT, SQL_GENERAL_USER_REPORT, \
-    SQL_REPORT_GENERAL_TOTAL
+    SQL_REPORT_GENERAL_TOTAL, SQL_PAYROLL_REPORT
 from ticketsApp.utils.QueryCursor import execute_query
 
 
@@ -147,4 +147,30 @@ class GeneralReport(viewsets.ModelViewSet):
             'box_id'] is None:
             return Response({'error': 'initial_date and final_date and nit and box_id required'}, status=400)
         value = execute_query(SQL_GENERAL_USER_REPORT, tuple(params.values()))
+        return Response(value, status=200)
+
+    @extend_schema(
+        summary="Reporte de la planilla de los box office",
+        description="Reporte de la planilla en una fechas inicial y final",
+        request=inline_serializer(
+            name="InlineFormSerializer",
+            fields={
+                "initial_date": serializers.DateField(),
+                "final_date": serializers.DateField(),
+                "box_id": serializers.IntegerField(),
+            },
+        ),
+        responses={200: OpenApiTypes.OBJECT},
+    )
+    @action(detail=False, methods=['post'], url_path='pay-roll-report')
+    def pay_roll_report(self,request,pk=None):
+        params = {
+            'initial_date': request.data.get('initial_date', None),
+            'final_date': request.data.get('final_date', None),
+            'box_id': request.data.get('box_id', None),
+        }
+        if params['initial_date'] is None or params['final_date'] is None or params['box_id'] is None:
+            return Response({'error': 'initial_date and final_date and box_id required'}, status=400)
+
+        value = execute_query(SQL_PAYROLL_REPORT, tuple(params.values()))
         return Response(value, status=200)

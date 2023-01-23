@@ -53,9 +53,17 @@ group by t.id,v.internal_number, t.generate_date, t.departure_time, u.name, u.la
 order by t.id desc
 """
 
+SQL_PAYROLL_REPORT = """
+select concat(u.name, ' ', u.last_name) as nUser, p.date, p.date_start,p.date_end,v.internal_number,v.plate
+from "ticketsApp_payroll" p join "ticketsApp_boxoffice" b on p."boxOffice_id" = b.id
+join "ticketsApp_user" u on b.user_id = u.id join "ticketsApp_vehicle" v on p.vehicle_id = v.plate
+where p.date between to_date(%s,'yyyy-MM-dd') and to_date(%s,'yyyy-MM-dd')
+and b.id = %s
+"""
+
 """
 Reporte por hora TABLA Assitance
-Reporte despachos por usuario (Descuentos por usuario ingeniero Andres) TABLA Planilla y box_office y vehicle
+Reporte despachos por usuario (Descuentos por usuario ingeniero Andres) TABLA Planilla 
 """
 
 
