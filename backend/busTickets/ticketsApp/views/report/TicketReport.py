@@ -13,6 +13,20 @@ from ticketsApp.views.querys.QueryTickets import SQL_GENERAL_TICKET, SQL_TICKET
 class TicketReport(viewsets.ModelViewSet):
     queryset = Ticket.objects.all()
 
+    @extend_schema(
+        summary="Reporte general de los tiquetes",
+        description="Reporte general de los tiquetes totales por empresa en un rango de fechas",
+        request=inline_serializer(
+            name="InlineFormSerializer",
+            fields={
+                "internal_number": serializers.IntegerField(),
+                "id_road": serializers.IntegerField(),
+                "initial_date": serializers.DateField(),
+                "final_date": serializers.DateField(),
+            },
+        ),
+        responses={200: OpenApiTypes.OBJECT},
+    )
     @action(detail=False, methods=['post'], url_path='general-ticket')
     def ticket_report_general(self, request, pk=None):
         params = {
@@ -28,6 +42,18 @@ class TicketReport(viewsets.ModelViewSet):
         value = execute_query(SQL_GENERAL_TICKET, tuple(params.values()))
         return Response(value, status=200)
 
+    @extend_schema(
+        summary="Reporte de un tiquete",
+        description="Reporte general de un tiuete ",
+        request=inline_serializer(
+            name="InlineFormSerializer",
+            fields={
+                "id_box": serializers.IntegerField(),
+                "id_ticket": serializers.IntegerField(),
+            },
+        ),
+        responses={200: OpenApiTypes.OBJECT},
+    )
     @action(detail=False, methods=['post'], url_path='ticket')
     def ticket_report(self, request, pk=None):
         params = {
