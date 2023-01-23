@@ -16,6 +16,7 @@ from ticketsApp.views.ticketViewSet import TicketViewSet
 
 from ticketsApp.views.report.GeneralReport import GeneralReport
 from ticketsApp.views.report.SalesReport import SalesReport
+from ticketsApp.views.report.TicketReport import TicketReport
 
 from rest_framework_simplejwt.views import (TokenObtainPairView, TokenRefreshView)
 
@@ -33,7 +34,7 @@ router.register(r'ticket', TicketViewSet)
 router.register(r'anulation', AnnulationViewSet)
 router.register(r'report', GeneralReport)
 router.register(r'sales', SalesReport)
-
+router.register(r'tickets', TicketReport)
 
 urlpatterns = [
     path('login/', TokenObtainPairView.as_view()),
