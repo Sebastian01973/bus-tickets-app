@@ -6,6 +6,7 @@ from rest_framework.decorators import action
 from rest_framework.response import Response
 
 from ticketsApp.models import Ticket
+from ticketsApp.serializers.ticketSerializer import TicketSerializer
 from ticketsApp.utils.QueryCursor import execute_query
 from ticketsApp.views.querys.QuerySalesGeneral import SQL_TOTAL_COMPANY_SALES, SQL_SALES_BY_COMPANY_DATE, \
     SQL_SALES_BY_BOX_OFFICE, SQL_SALES_BY_VEHICLE, SQL_SALES_BY_DESTINY_AND_COMPANY
@@ -13,6 +14,7 @@ from ticketsApp.views.querys.QuerySalesGeneral import SQL_TOTAL_COMPANY_SALES, S
 
 class SalesReport(viewsets.ModelViewSet):
     queryset = Ticket.objects.all()
+    serializer_class = TicketSerializer
 
     @extend_schema(
         summary="Ventas totales por empresa",

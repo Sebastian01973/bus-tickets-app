@@ -18,6 +18,8 @@ from ticketsApp.views.report.GeneralReport import GeneralReport
 from ticketsApp.views.report.SalesReport import SalesReport
 from ticketsApp.views.report.TicketReport import TicketReport
 
+from ticketsApp.views.LogOut import LogOut
+
 from rest_framework_simplejwt.views import (TokenObtainPairView, TokenRefreshView)
 
 router: routers.ExtendedDefaultRouter = routers.ExtendedDefaultRouter()
@@ -39,6 +41,7 @@ router.register(r'tickets', TicketReport)
 urlpatterns = [
     path('login/', TokenObtainPairView.as_view()),
     path('refresh/', TokenRefreshView.as_view()),
+    path('logout/', LogOut.as_view(), name='logout'),
     # path('report/', GeneralReport.as_view({'get': 'list'})),
 
     path('schema/', SpectacularAPIView.as_view(), name='schema'),

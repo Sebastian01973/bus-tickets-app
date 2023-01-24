@@ -6,6 +6,7 @@ from rest_framework.response import Response
 from rest_framework import serializers
 
 from ticketsApp.models import Ticket
+from ticketsApp.serializers.ticketSerializer import TicketSerializer
 from ticketsApp.views.querys.QueryReportsGeneral \
     import SQL_QUERY_REPORT_GENERAL, SQL_PURCHASE_BY_CLIENT, SQL_USER_REPORT, SQL_GENERAL_USER_REPORT, \
     SQL_REPORT_GENERAL_TOTAL, SQL_PAYROLL_REPORT
@@ -14,6 +15,7 @@ from ticketsApp.utils.QueryCursor import execute_query
 
 class GeneralReport(viewsets.ModelViewSet):
     queryset = Ticket.objects.all()
+    serializer_class = TicketSerializer
 
     @extend_schema(
         summary="Reporte general",

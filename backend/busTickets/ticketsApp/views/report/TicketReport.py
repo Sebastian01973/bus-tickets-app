@@ -6,12 +6,14 @@ from rest_framework.decorators import action
 from rest_framework.response import Response
 
 from ticketsApp.models import Ticket
+from ticketsApp.serializers.ticketSerializer import TicketSerializer
 from ticketsApp.utils.QueryCursor import execute_query
 from ticketsApp.views.querys.QueryTickets import SQL_GENERAL_TICKET, SQL_TICKET
 
 
 class TicketReport(viewsets.ModelViewSet):
     queryset = Ticket.objects.all()
+    serializer_class = TicketSerializer
 
     @extend_schema(
         summary="Reporte general de los tiquetes",
