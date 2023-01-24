@@ -5,9 +5,13 @@ from rest_framework.response import Response
 from rest_framework_simplejwt.tokens import RefreshToken
 
 from ticketsApp.models import BoxOffice
+from ticketsApp.serializers.boxOfficeSerializer import BoxOfficeSerializer
 
 
 class LogOut(GenericAPIView):
+    queryset = BoxOffice.objects.all()
+    serializer_class = BoxOfficeSerializer
+
 
     def post(self, request, *args, **kwargs):
         user = BoxOffice.objects.filter(id=request.data.get('id', 0))

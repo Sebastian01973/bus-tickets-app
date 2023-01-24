@@ -21,7 +21,7 @@ class GeneralReport(viewsets.ModelViewSet):
         summary="Reporte general",
         description="Reporte general de las empresas",
         request=inline_serializer(
-            name="InlineFormSerializer",
+            name="InlineFormSerializer", # Ojo con ewste nombre toca Cambiarlo y hacer pruebas
             fields={
                 "nit": serializers.CharField(),
                 "initial_date": serializers.DateField(),
