@@ -7,9 +7,9 @@ services:
   - type: web
     name: busTickets
     env: python
-    autoDeploy: false
     buildCommand: "./build.sh"
     startCommand: "gunicorn busTickets.wsgi"
+    autoDeploy: false
     envVars:
       - key: DATABASE_URL
         fromDatabase:
