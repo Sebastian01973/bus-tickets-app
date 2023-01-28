@@ -11,6 +11,9 @@ from ticketsApp.utils.QueryCursor import execute_query
 from ticketsApp.views.querys.QueryTickets import SQL_GENERAL_TICKET, SQL_TICKET
 
 
+@extend_schema(tags=["Reporte de tiquetes"],
+               description="Reporte de tiquetes",
+               methods=['post'])
 class TicketReport(viewsets.ModelViewSet):
     queryset = Ticket.objects.all()
     serializer_class = TicketSerializer
@@ -19,7 +22,7 @@ class TicketReport(viewsets.ModelViewSet):
         summary="Reporte general de los tiquetes",
         description="Reporte general de los tiquetes totales por empresa en un rango de fechas",
         request=inline_serializer(
-            name="ticket report general",
+            name="ticket-report-general",
             fields={
                 "internal_number": serializers.IntegerField(),
                 "id_road": serializers.IntegerField(),
@@ -28,6 +31,7 @@ class TicketReport(viewsets.ModelViewSet):
             },
         ),
         responses={200: OpenApiTypes.OBJECT},
+        methods=["POST"],
     )
     @action(detail=False, methods=['post'], url_path='general-ticket')
     def ticket_report_general(self, request, pk=None):
@@ -38,8 +42,10 @@ class TicketReport(viewsets.ModelViewSet):
             'final_date': request.data.get('final_date', None)
         }
 
-        if params['internal_number'] is None or params['initial_date'] is None or params['final_date'] is None or params['id_road'] is None:
-            return Response({'error': 'internal_number and initial_date and final_date and id_road required'}, status=400)
+        if params['internal_number'] is None or params['initial_date'] is None or params['final_date'] is None or \
+                params['id_road'] is None:
+            return Response({'error': 'internal_number and initial_date and final_date and id_road required'},
+                            status=400)
 
         value = execute_query(SQL_GENERAL_TICKET, tuple(params.values()))
         return Response(value, status=200)
@@ -48,13 +54,14 @@ class TicketReport(viewsets.ModelViewSet):
         summary="Reporte de un tiquete",
         description="Reporte general de un tiuete ",
         request=inline_serializer(
-            name="ticket report",
+            name="ticket-report",
             fields={
                 "id_box": serializers.IntegerField(),
                 "id_ticket": serializers.IntegerField(),
             },
         ),
         responses={200: OpenApiTypes.OBJECT},
+        methods=["POST"],
     )
     @action(detail=False, methods=['post'], url_path='ticket')
     def ticket_report(self, request, pk=None):

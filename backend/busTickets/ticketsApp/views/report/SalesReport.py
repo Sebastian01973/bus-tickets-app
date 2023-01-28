@@ -12,6 +12,9 @@ from ticketsApp.views.querys.QuerySalesGeneral import SQL_TOTAL_COMPANY_SALES, S
     SQL_SALES_BY_BOX_OFFICE, SQL_SALES_BY_VEHICLE, SQL_SALES_BY_DESTINY_AND_COMPANY
 
 
+@extend_schema(tags=["Reporte de ventas"],
+               description="Reporte de ventas",
+               methods=['post'])
 class SalesReport(viewsets.ModelViewSet):
     queryset = Ticket.objects.all()
     serializer_class = TicketSerializer
@@ -20,7 +23,7 @@ class SalesReport(viewsets.ModelViewSet):
         summary="Ventas totales por empresa",
         description="Reporte general de ventas totales por empresa",
         request=inline_serializer(
-            name="total company sales",
+            name="total-company-sales",
             fields={
                 "id_box": serializers.IntegerField(),
                 "initial_date": serializers.DateField(),
@@ -46,7 +49,7 @@ class SalesReport(viewsets.ModelViewSet):
         summary="Ventas totales por empresa y fecha",
         description="Reporte general de ventas totales por empresa en un rango de fechas",
         request=inline_serializer(
-            name="sales by company and date",
+            name="sales-by-company-and-date",
             fields={
                 "nit": serializers.CharField(),
                 "initial_date": serializers.DateField(),
@@ -71,7 +74,7 @@ class SalesReport(viewsets.ModelViewSet):
         summary="Ventas totales por box office en una empresa",
         description="Reporte general de ventas totales por box ofice en un rango de fechas",
         request=inline_serializer(
-            name="sales by box office",
+            name="sales-by-box-office",
             fields={
                 "id_box": serializers.IntegerField(),
                 "nit": serializers.CharField(),
@@ -99,7 +102,7 @@ class SalesReport(viewsets.ModelViewSet):
         summary="Ventas totales por vehiculo",
         description="Reporte general de ventas totales por vehiculo en un rango de fechas",
         request=inline_serializer(
-            name="sales by vehicle",
+            name="sales-by-vehicle",
             fields={
                 "internal_number": serializers.CharField(),
                 "initial_date": serializers.DateField(),
@@ -124,7 +127,7 @@ class SalesReport(viewsets.ModelViewSet):
         summary="Ventas totales por ruta y empresa",
         description="Reporte general de ventas totales por ruta y empresa en un rango de fechas",
         request=inline_serializer(
-            name="sales by destiny and company",
+            name="sales-by-destiny-and-company",
             fields={
                 "initial_date": serializers.DateField(),
                 "final_date": serializers.DateField(),

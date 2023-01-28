@@ -13,6 +13,9 @@ from ticketsApp.views.querys.QueryReportsGeneral \
 from ticketsApp.utils.QueryCursor import execute_query
 
 
+@extend_schema(tags=["Reportes"],
+               description="Reportes",
+               methods=['post'])
 class GeneralReport(viewsets.ModelViewSet):
     queryset = Ticket.objects.all()
     serializer_class = TicketSerializer
@@ -21,7 +24,7 @@ class GeneralReport(viewsets.ModelViewSet):
         summary="Reporte general",
         description="Reporte general de las empresas",
         request=inline_serializer(
-            name="General Report",
+            name="General-Report",
             fields={
                 "nit": serializers.CharField(),
                 "initial_date": serializers.DateField(),
@@ -48,7 +51,7 @@ class GeneralReport(viewsets.ModelViewSet):
         summary="Reporte general total",
         description="Reporte general total de las empresas",
         request=inline_serializer(
-            name="General total Report",
+            name="General-total-Report",
             fields={
                 "initial_date": serializers.DateField(),
                 "final_date": serializers.DateField(),
@@ -73,7 +76,7 @@ class GeneralReport(viewsets.ModelViewSet):
         summary="compras por cliente en una empresa",
         description="Reporte general compras por cliente en una empresa",
         request=inline_serializer(
-            name="Purchases by client company",
+            name="Purchases-by-client-company",
             fields={
                 "id_client": serializers.IntegerField(),
                 "initial_date": serializers.DateField(),
@@ -101,7 +104,7 @@ class GeneralReport(viewsets.ModelViewSet):
         summary="Reporte por usuario",
         description="Reporte por usuario en una fechas inicial y final",
         request=inline_serializer(
-            name="User Report",
+            name="User-Report",
             fields={
                 "identification": serializers.CharField(),
                 "initial_date": serializers.DateField(),
@@ -127,7 +130,7 @@ class GeneralReport(viewsets.ModelViewSet):
         summary="Reporte general por usuario",
         description="Reporte general por usuario en una fechas inicial y final",
         request=inline_serializer(
-            name="General User Report",
+            name="General-User-Report",
             fields={
                 "initial_date": serializers.DateField(),
                 "final_date": serializers.DateField(),
@@ -155,7 +158,7 @@ class GeneralReport(viewsets.ModelViewSet):
         summary="Reporte de la planilla de los box office",
         description="Reporte de la planilla en una fechas inicial y final",
         request=inline_serializer(
-            name="Pay Roll Report",
+            name="Pay-Roll-Report",
             fields={
                 "initial_date": serializers.DateField(),
                 "final_date": serializers.DateField(),
