@@ -6,11 +6,21 @@ from ticketsApp.serializers.clientSerializer import ClientSerializer
 
 
 @extend_schema_view(
-    list=extend_schema(description="List all clients"),
-    retrieve=extend_schema(description="Retrieve a client"),
-    create=extend_schema(description="Create a cllient"),
-    update=extend_schema(description="Update a client"),
-    destroy=extend_schema(description="Delete a client")
+    list=extend_schema(
+        summary="List all clients",
+        description="Return a list of all the clients"),
+    retrieve=extend_schema(
+        summary="Retrieve a client",
+        description="Get details about a specific client"),
+    create=extend_schema(
+        summary="Create a client",
+        description="Return details about a newly created client"),
+    update=extend_schema(
+        summary="Update a client",
+        description="Return details about an updated client"),
+    destroy=extend_schema(
+        summary="Delete a client",
+        description="Delete a client and return status code 204"),
 )
 class ClientViewSet(viewsets.ModelViewSet):
     queryset = Client.objects.all()

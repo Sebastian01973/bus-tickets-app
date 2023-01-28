@@ -44,3 +44,5 @@ def log_user_logged_in_failed(sender, credentials, request, **kwargs):
     except Exception as e:
         # log the error
         error_log.error("log_user_logged_in request: %s, error: %s" % (request, e))
+
+

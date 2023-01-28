@@ -9,25 +9,31 @@ https://docs.djangoproject.com/en/4.1/topics/settings/
 For the full list of settings and their values, see
 https://docs.djangoproject.com/en/4.1/ref/settings/
 """
-
+import os
 from pathlib import Path
 from datetime import timedelta
+import dj_database_url
 
 # Build paths inside the project like this: BASE_DIR / 'subdir'.
 BASE_DIR = Path(__file__).resolve().parent.parent
-
 
 # Quick-start development settings - unsuitable for production
 # See https://docs.djangoproject.com/en/4.1/howto/deployment/checklist/
 
 # SECURITY WARNING: keep the secret key used in production secret!
-SECRET_KEY = 'django-insecure-_vq^^+%y3q*_oyk+05xq3l!6he^g5u1ssndhsi_)!7&h$beu$g'
+SECRET_KEY = os.environ.get('SECRET_KEY', default='your secret key')
 
 # SECURITY WARNING: don't run with debug turned on in production!
-DEBUG = True
+# Debug mode is turned off by default. To turn it on, set the environment variable
+# DEBUG = True
+DEBUG = 'RENDER' not in os.environ
 
 ALLOWED_HOSTS = []
 
+RENDER_EXTERNAL_HOSTNAME = os.environ.get('RENDER_EXTERNAL_HOSTNAME')
+
+if RENDER_EXTERNAL_HOSTNAME:
+    ALLOWED_HOSTS.append(RENDER_EXTERNAL_HOSTNAME)
 
 # Application definition
 
@@ -59,6 +65,7 @@ SIMPLE_JWT = {
 
 MIDDLEWARE = [
     'django.middleware.security.SecurityMiddleware',
+    'whitenoise.middleware.WhiteNoiseMiddleware',
     'django.contrib.sessions.middleware.SessionMiddleware',
     'django.middleware.common.CommonMiddleware',
     'django.middleware.csrf.CsrfViewMiddleware',
@@ -93,12 +100,19 @@ REST_FRAMEWORK = {
 AUTH_USER_MODEL = 'ticketsApp.BoxOffice'
 
 SPECTACULAR_SETTINGS = {
-    'TITLE': 'API ',
-    'DESCRIPTION': 'API',
+    'TITLE': 'APIRest for a public transport company',
+    'DESCRIPTION': 'In this URL are all the API endpoints, where GET,POST,UPDATE,DELETE,PATCH requests can be madeIn this URL are all the API endpoints, '
+                   'where GET,POST,UPDATE,DELETE,PATCH requests can be made',
     'VERSION': '1.0.0',
+    'CONTACT': {
+        'name': 'Sebastian Martinez y Jhon Acevedo',
+        'url': 'https://github.com/Sebastian01973/bus-tickets-app',
+    },
+    'LICENSE': {'name': 'Apache License 2.0', 'url': 'https://www.apache.org/licenses/LICENSE-2.0.html'},
     'SWAGGER_UI_SETTINGS': {
         'persistAuthorization': True,
     },
+    'COMPONENT_SPLIT_REQUEST': True,
 }
 
 ROOT_URLCONF = 'busTickets.urls'
@@ -121,29 +135,26 @@ TEMPLATES = [
 
 WSGI_APPLICATION = 'busTickets.wsgi.application'
 
-
 # Database
 # https://docs.djangoproject.com/en/4.1/ref/settings/#databases
 
 DATABASES = {
-    'default': {
-        'ENGINE': 'django.db.backends.postgresql',
-        'NAME': 'railway',
-        'USER': 'postgres',
-        'PASSWORD': 'IQpAdlk2BlytzW92OR6i',
-        'HOST': 'containers-us-west-56.railway.app',
-        'PORT': '5501',
-    }
+    # DB in Railway Edwin
     # 'default': {
     #     'ENGINE': 'django.db.backends.postgresql',
-    #     'NAME': 'custom',
+    #     'NAME': 'railway',
     #     'USER': 'postgres',
-    #     'PASSWORD': 'Orion1',
-    #     'HOST': 'localhost',
-    #     'PORT': '5432',
+    #     'PASSWORD': 'IQpAdlk2BlytzW92OR6i',
+    #     'HOST': 'containers-us-west-56.railway.app',
+    #     'PORT': '5501',
     # }
-}
 
+    # DB in Render Sebastian and production
+    'default': dj_database_url.config(
+        default='postgresql://postgres:IQpAdlk2BlytzW92OR6i@containers-us-west-56.railway.app:5501/railway',
+        conn_max_age=600,
+    )
+}
 
 # Password validation
 # https://docs.djangoproject.com/en/4.1/ref/settings/#auth-password-validators
@@ -163,7 +174,6 @@ AUTH_PASSWORD_VALIDATORS = [
     },
 ]
 
-
 # Internationalization
 # https://docs.djangoproject.com/en/4.1/topics/i18n/
 
@@ -175,11 +185,14 @@ USE_I18N = True
 
 USE_TZ = True
 
-
 # Static files (CSS, JavaScript, Images)
 # https://docs.djangoproject.com/en/4.1/howto/static-files/
 
 STATIC_URL = 'static/'
+
+if not DEBUG:
+    STATIC_ROOT = os.path.join(BASE_DIR, 'staticfiles')
+    STATICFILES_STORAGE = 'whitenoise.storage.CompressedManifestStaticFilesStorage'
 
 # Default primary key field type
 # https://docs.djangoproject.com/en/4.1/ref/settings/#default-auto-field
