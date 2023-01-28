@@ -21,7 +21,7 @@ class GeneralReport(viewsets.ModelViewSet):
         summary="Reporte general",
         description="Reporte general de las empresas",
         request=inline_serializer(
-            name="InlineFormSerializer", # Ojo con ewste nombre toca Cambiarlo y hacer pruebas
+            name="General Report",
             fields={
                 "nit": serializers.CharField(),
                 "initial_date": serializers.DateField(),
@@ -48,7 +48,7 @@ class GeneralReport(viewsets.ModelViewSet):
         summary="Reporte general total",
         description="Reporte general total de las empresas",
         request=inline_serializer(
-            name="InlineFormSerializer",
+            name="General total Report",
             fields={
                 "initial_date": serializers.DateField(),
                 "final_date": serializers.DateField(),
@@ -73,7 +73,7 @@ class GeneralReport(viewsets.ModelViewSet):
         summary="compras por cliente en una empresa",
         description="Reporte general compras por cliente en una empresa",
         request=inline_serializer(
-            name="InlineFormSerializer",
+            name="Purchases by client company",
             fields={
                 "id_client": serializers.IntegerField(),
                 "initial_date": serializers.DateField(),
@@ -101,7 +101,7 @@ class GeneralReport(viewsets.ModelViewSet):
         summary="Reporte por usuario",
         description="Reporte por usuario en una fechas inicial y final",
         request=inline_serializer(
-            name="InlineFormSerializer",
+            name="User Report",
             fields={
                 "identification": serializers.CharField(),
                 "initial_date": serializers.DateField(),
@@ -127,7 +127,7 @@ class GeneralReport(viewsets.ModelViewSet):
         summary="Reporte general por usuario",
         description="Reporte general por usuario en una fechas inicial y final",
         request=inline_serializer(
-            name="InlineFormSerializer",
+            name="General User Report",
             fields={
                 "initial_date": serializers.DateField(),
                 "final_date": serializers.DateField(),
@@ -155,7 +155,7 @@ class GeneralReport(viewsets.ModelViewSet):
         summary="Reporte de la planilla de los box office",
         description="Reporte de la planilla en una fechas inicial y final",
         request=inline_serializer(
-            name="InlineFormSerializer",
+            name="Pay Roll Report",
             fields={
                 "initial_date": serializers.DateField(),
                 "final_date": serializers.DateField(),
@@ -165,7 +165,7 @@ class GeneralReport(viewsets.ModelViewSet):
         responses={200: OpenApiTypes.OBJECT},
     )
     @action(detail=False, methods=['post'], url_path='pay-roll-report')
-    def pay_roll_report(self,request,pk=None):
+    def pay_roll_report(self, request, pk=None):
         params = {
             'initial_date': request.data.get('initial_date', None),
             'final_date': request.data.get('final_date', None),

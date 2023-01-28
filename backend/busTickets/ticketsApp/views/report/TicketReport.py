@@ -19,7 +19,7 @@ class TicketReport(viewsets.ModelViewSet):
         summary="Reporte general de los tiquetes",
         description="Reporte general de los tiquetes totales por empresa en un rango de fechas",
         request=inline_serializer(
-            name="InlineFormSerializer",
+            name="ticket report general",
             fields={
                 "internal_number": serializers.IntegerField(),
                 "id_road": serializers.IntegerField(),
@@ -48,7 +48,7 @@ class TicketReport(viewsets.ModelViewSet):
         summary="Reporte de un tiquete",
         description="Reporte general de un tiuete ",
         request=inline_serializer(
-            name="InlineFormSerializer",
+            name="ticket report",
             fields={
                 "id_box": serializers.IntegerField(),
                 "id_ticket": serializers.IntegerField(),
@@ -67,5 +67,3 @@ class TicketReport(viewsets.ModelViewSet):
 
         value = execute_query(SQL_TICKET, tuple(params.values()))
         return Response(value, status=200)
-
-
