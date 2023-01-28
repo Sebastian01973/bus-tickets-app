@@ -47,7 +47,6 @@ INSTALLED_APPS = [
     'rest_framework',
     'ticketsApp',
     'drf_spectacular',
-    # 'axes',
     'corsheaders',
 ]
 
@@ -139,21 +138,8 @@ WSGI_APPLICATION = 'busTickets.wsgi.application'
 # https://docs.djangoproject.com/en/4.1/ref/settings/#databases
 
 DATABASES = {
-    # DB in Railway Edwin
-    # 'default': {
-    #     'ENGINE': 'django.db.backends.postgresql',
-    #     'NAME': 'railway',
-    #     'USER': 'postgres',
-    #     'PASSWORD': 'IQpAdlk2BlytzW92OR6i',
-    #     'HOST': 'containers-us-west-56.railway.app',
-    #     'PORT': '5501',
-    # }
-
     # DB in Render Sebastian and production
-    'default': dj_database_url.config(
-        default='postgresql://postgres:IQpAdlk2BlytzW92OR6i@containers-us-west-56.railway.app:5501/railway',
-        conn_max_age=600,
-    )
+    'default': dj_database_url.parse(os.environ.get('DATABASE_URL'), conn_max_age=600)
 }
 
 # Password validation
