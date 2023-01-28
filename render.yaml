@@ -1,7 +1,7 @@
 databases:
   - name: busTickets
-    databaseName: busTickets
-    user: busTickets
+    databaseName: django
+    user: django
 
 services:
   - type: web
