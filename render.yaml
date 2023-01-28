@@ -5,10 +5,9 @@ databases:
 
 services:
   - type: web
-    name: Api-innova
-    region: Oregon
-    rootDir: backend/busTickets
+    name: busTickets
     env: python
+    autoDeploy: false
     buildCommand: "./build.sh"
     startCommand: "gunicorn busTickets.wsgi"
     envVars:
