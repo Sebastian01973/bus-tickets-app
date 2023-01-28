@@ -6,11 +6,21 @@ from ticketsApp.serializers.ticketSerializer import TicketSerializer
 
 
 @extend_schema_view(
-    list=extend_schema("List all tickets"),
-    create=extend_schema("Create a new ticket"),
-    retrieve=extend_schema("Retrieve a ticket"),
-    update=extend_schema("Update a ticket"),
-    destroy=extend_schema("Delete a ticket"),
+    list=extend_schema(
+        summary="List all tickets",
+        description="Return a list of all the tickets"),
+    retrieve=extend_schema(
+        summary="Retrieve a ticket",
+        description="Get details about a specific ticket"),
+    create=extend_schema(
+        summary="Create a ticket",
+        description="Return details about a newly created ticket"),
+    update=extend_schema(
+        summary="Update a ticket",
+        description="Return details about an updated ticket"),
+    destroy=extend_schema(
+        summary="Delete a ticket",
+        description="Delete a ticket and return status code 204"),
 )
 class TicketViewSet(viewsets.ModelViewSet):
     queryset = Ticket.objects.all()

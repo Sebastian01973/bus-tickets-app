@@ -7,3 +7,5 @@ from .vehicle import Vehicle
 from .payroll import Payroll
 from .client import Client
 from .ticket import Ticket
+from .annulation import Annulation
+from ..models.activity.UserLoginActivity import UserLoginActivity
