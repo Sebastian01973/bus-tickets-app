@@ -10,12 +10,19 @@ def authenticate_user(username, password, request):
     return user
 
 
-class JWTSerializer(TokenObtainPairSerializer):
+class JwtSerializer(TokenObtainPairSerializer):
+    def update(self, instance, validated_data):
+        pass
+
+    def create(self, validated_data):
+        pass
+
     def validate(self, attrs):
         credentials = {
             self.username_field: attrs.get(self.username_field),
             'password': attrs.get('password')
         }
+        print(self.context)
 
         if all(credentials.values()):
             user = authenticate(request=self.context['request'], **credentials)
@@ -26,6 +33,8 @@ class JWTSerializer(TokenObtainPairSerializer):
 
                 return {
                     'access': str(payload.access_token),
+                    'refresh': str(payload),
+                    # 'lifetime': payload.lifetime,
                 }
             else:
                 msg = 'Unable to log in with provided credentials.'
