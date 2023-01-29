@@ -1,15 +1,15 @@
 databases:
   - name: busTickets
-    databaseName: busTickets
-    user: busTickets
+    databaseName: django
+    user: django
 
 services:
   - type: web
     name: busTickets
     env: python
-    autoDeploy: false
     buildCommand: "./build.sh"
     startCommand: "gunicorn busTickets.wsgi"
+    autoDeploy: false
     envVars:
       - key: DATABASE_URL
         fromDatabase:
@@ -18,4 +18,4 @@ services:
       - key: SECRET_KEY
         generateValue: true
       - key: WEB_CONCURRENCY
-        value: 4
+        value: 4 
