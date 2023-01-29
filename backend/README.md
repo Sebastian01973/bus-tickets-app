@@ -4,34 +4,11 @@
 <br>
 </h1>
 
-<!-- TOC -->
-  * [💻 Sobre este Proyecto](#-sobre-este-proyecto)
-  * [📃 Documentacion Swagger](#-documentacion-swagger)
-  * [🧑🏽‍💻 ¿Tecnologias?](#-tecnologias)
-  * [Como instalar el proyecto. ( 🔧Set up )](#como-instalar-el-proyecto--set-up-)
-    * [1. Clonar el repositorio](#1-clonar-el-repositorio)
-    * [2. Creacion Entorno Virtual y Archivo .env](#2-creacion-entorno-virtual-y-archivo-env)
-    * [3. Activacion del Entorno Virtual](#3-activacion-del-entorno-virtual)
-    * [4. Instalacion de Librerias (Archivo requirements)](#4-instalacion-de-librerias--archivo-requirements-)
-    * [5. Ejecutar el Proyecto](#5-ejecutar-el-proyecto)
-  * [🪪 Licencia](#-licencia)
-<!-- TOC -->
-
-## 💻 Sobre este Proyecto
-
-Hablar mierda don edwin
-
-## 📃 Documentacion Swagger
-
-Aqui va la docummentacion Swagger ....
-
 ---
 
 ## 🧑🏽‍💻 ¿Tecnologias?
 
-Para la realización de esta aplicacion se utilizó el lenguaje de programación de Python 
-haciendo uso del framework Django para el backend, y para el frontend se utiliza javascript,HTML
-y CSS haciendo uso del framework React.js, además se utilizó el IDE de Intellij IDEA y el editor de texto Visual Code. 
+---
 
 <div align="center">
 
@@ -42,18 +19,12 @@ y CSS haciendo uso del framework React.js, además se utilizó el IDE de Intelli
 <a href="https://www.djangoproject.com/">
     <img src="https://seeklogo.com/images/D/django-logo-4C5ECF7036-seeklogo.com.png"
          alt="Django" width="50"> 
- 
-<a href="https://es.reactjs.org/">
-    <img src="https://seeklogo.com/images/R/react-logo-7B3CE81517-seeklogo.com.png"
-         alt="React.js" width="50">
+
 
 <a href="https://www.jetbrains.com/es-es/idea/">
     <img src="https://seeklogo.com/images/I/intellij-idea-logo-F0395EF783-seeklogo.com.png"
          alt="Intellij" width="50">
 
-<a href="https://www.postgresql.org/">
-    <img src="https://seeklogo.com/images/V/visual-studio-code-logo-449D71944F-seeklogo.com.png"
-         alt="PostGrees" width="50">
 
 <a href="https://www.postgresql.org/">
     <img src="https://upload.wikimedia.org/wikipedia/commons/2/29/Postgresql_elephant.svg"
