@@ -61,6 +61,12 @@ where p.date between to_date(%s,'yyyy-MM-dd') and to_date(%s,'yyyy-MM-dd')
 and b.id = %s
 """
 
+SQL_ASSISTANCE_REPORT = """
+select * from "ticketsApp_userloginactivity"
+where login_username = %s and
+      login_datetime between to_date(%s,'yyyy-MM-dd') and to_date(%s,'yyyy-MM-dd');
+"""
+
 """
 Reporte por hora TABLA Assitance
 Reporte despachos por usuario (Descuentos por usuario ingeniero Andres) TABLA Planilla 

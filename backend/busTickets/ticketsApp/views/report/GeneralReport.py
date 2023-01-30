@@ -9,7 +9,7 @@ from ticketsApp.models import Ticket
 from ticketsApp.serializers.ticketSerializer import TicketSerializer
 from ticketsApp.views.querys.QueryReportsGeneral \
     import SQL_QUERY_REPORT_GENERAL, SQL_PURCHASE_BY_CLIENT, SQL_USER_REPORT, SQL_GENERAL_USER_REPORT, \
-    SQL_REPORT_GENERAL_TOTAL, SQL_PAYROLL_REPORT
+    SQL_REPORT_GENERAL_TOTAL, SQL_PAYROLL_REPORT, SQL_ASSISTANCE_REPORT
 from ticketsApp.utils.QueryCursor import execute_query
 
 
@@ -178,4 +178,30 @@ class GeneralReport(viewsets.ModelViewSet):
             return Response({'error': 'initial_date and final_date and box_id required'}, status=400)
 
         value = execute_query(SQL_PAYROLL_REPORT, tuple(params.values()))
+        return Response(value, status=200)
+
+    @extend_schema(
+        summary="Reporte de assistencia",
+        description="Reporte de la assitencia en una fechas inicial y final",
+        request=inline_serializer(
+            name="report-assistance",
+            fields={
+                "username": serializers.CharField(),
+                "initial_date": serializers.DateField(),
+                "final_date": serializers.DateField(),
+            },
+        ),
+        responses={200: OpenApiTypes.OBJECT},
+    )
+    @action(detail=False, methods=['post'], url_path='report-assistance')
+    def report_assistance(self, request, pk=None):
+        params = {
+            'username': request.data.get('username', None),
+            'initial_date': request.data.get('initial_date', None),
+            'final_date': request.data.get('final_date', None),
+        }
+        if params['initial_date'] is None or params['final_date'] is None or params['username'] is None:
+            return Response({'error': 'initial_date and final_date and username required'}, status=400)
+
+        value = execute_query(SQL_ASSISTANCE_REPORT, tuple(params.values()))
         return Response(value, status=200)
