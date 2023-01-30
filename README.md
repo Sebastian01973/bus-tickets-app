@@ -5,7 +5,7 @@
 
 ## 💻 About this project
 
-Este proyecto fue pensado para mejorar la venta de la empresa transportadora Boyacense Cootax
+#### Este proyecto fue pensado para mejorar la venta de la empresa transportadora Boyacense Cootax
 
 ## 🛠️ Integrantes
 1. Sebastian Felipe Martinez Samaca
@@ -13,8 +13,15 @@ Este proyecto fue pensado para mejorar la venta de la empresa transportadora Boy
 
 ## 📃 Documentacion con Swagger
 
-Aqui va la docummentacion Swagger ....
- Links de Render.
+Los Endpoints y operaciones de cada Endpoints (GET, POST, PUT, DELETE), 
+los parametros de entrada y salida para cada operacion, información de contacto, licencia y otra información
+se encuentran en el siguiente enlace:
+<br>
+https://api-innova.onrender.com/schema/swagger-ui/
+
+Para la administracion se encuentra en el siguiente enlace:
+<br>
+https://api-innova.onrender.com/admin/login/?next=/admin/
 
 ---
 
@@ -47,6 +54,10 @@ Para el despliegue de la API se emplea render:Cloud Application.
     <img src="https://upload.wikimedia.org/wikipedia/commons/2/29/Postgresql_elephant.svg"
          alt="PostGrees" width="50">
 </div>
+
+## Modelo Entidad/Relacion de la base de datos
+
+<img src="design/ER.png" alt="E/R" width="800" height="500">
 
 ## Branch main
 
