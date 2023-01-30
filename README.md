@@ -63,6 +63,12 @@ Para el despliegue de la API se emplea render:Cloud Application.
 
 Posee los archivos principales del proyecto y es la rama a la que debe hacerse merge.
 
+## 🚀 Futuros Cambios
+
+Para seguir trabajando en esta API se deben realizar nuevas funcionalidades como:
+- Crear un dash board para la administracion de los tiquetes y ventas por parte de un Taquillero.
+- Generar mayor cantidad de reportes con la información
+
 ## 🪪 Licencia
     
 El código fuente de cada componente/herramienta desarrollado para este proyecto
