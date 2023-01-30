@@ -28,7 +28,6 @@ def log_user_logged_in_success(sender, user, request, **kwargs):
                                                     path=request.path)
         user_login_activity_log.save()
     except Exception as e:
-        # log the error
         error_log.error("log_user_logged_in request: %s, error: %s" % (request, e))
 
 
@@ -39,21 +38,22 @@ def log_user_logged_in_failed(sender, credentials, request, **kwargs):
         user_login_activity_log = UserLoginActivity(login_IP=get_client_ip(request),
                                                     login_username=credentials['username'],
                                                     user_agent_info=user_agent_info,
-                                                    status=UserLoginActivity.FAILED)
+                                                    status=UserLoginActivity.FAILED,
+                                                    path=request.path)
         user_login_activity_log.save()
     except Exception as e:
-        # log the error
         error_log.error("log_user_logged_in request: %s, error: %s" % (request, e))
 
 
 @receiver(user_logged_out)
-def log_user_logged_out(sender, user, request, **kwargs):
+def log_user_logged_out(sender, username, request, **kwargs):
     try:
         user_agent_info = request.META.get('HTTP_USER_AGENT', '<unknown>')[:255],
         user_login_activity_log = UserLoginActivity(login_IP=get_client_ip(request),
-                                                    login_username=user.username,
+                                                    login_username=username,
                                                     user_agent_info=user_agent_info,
-                                                    status=UserLoginActivity.SUCCESS)
+                                                    status=UserLoginActivity.SUCCESS,
+                                                    path=request.path)
         user_login_activity_log.save()
     except Exception as e:
         error_log.error("log_user_logged_in request: %s, error: %s" % (request, e))
