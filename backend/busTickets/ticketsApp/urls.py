@@ -18,7 +18,7 @@ from ticketsApp.views.report.GeneralReport import GeneralReport
 from ticketsApp.views.report.SalesReport import SalesReport
 from ticketsApp.views.report.TicketReport import TicketReport
 
-from ticketsApp.views.LogOut import LogOut
+from ticketsApp.views.Logout import LogOut
 
 from rest_framework_simplejwt.views import (TokenObtainPairView, TokenRefreshView)
 

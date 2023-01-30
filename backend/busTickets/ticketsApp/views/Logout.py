@@ -17,7 +17,7 @@ class LogOut(GenericAPIView):
             serializer.save()
             try:
                 user = authenticate(username=req.data['username'], password=req.data['password'])
-                user_logged_out.send(sender=user.__class__, username='edwin', request=req, )
+                user_logged_out.send(sender=user.__class__, username=user.username, request=req, )
                 return Response(status=status.HTTP_205_RESET_CONTENT)
             except Exception as e:
                 return Response({'message: ', e}, status=status.HTTP_400_BAD_REQUEST)
