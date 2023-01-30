@@ -57,7 +57,7 @@ Para el despliegue de la API se emplea render:Cloud Application.
 
 ## Modelo Entidad/Relacion de la base de datos
 
-<img src="design/ER.png" alt="E/R" width="800" height="500">
+<img src="design/ER.png" alt="E/R" width="700" height="400">
 
 ## Branch main
 
